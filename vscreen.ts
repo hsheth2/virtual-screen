@@ -57,10 +57,10 @@ server({port: 3000, security: {csrf: false}}, [
 		}
 
 		if (!vncServers.virtual1.noVNC) {
-			vncServers.virtual1.noVNC = childProcess.exec("./noVNC/utils/launch.sh --listen 6081 --web ./noVNC/ --vnc localhost:6071");
+			vncServers.virtual1.noVNC = childProcess.exec("./utils/launch.sh --listen 6081 --vnc localhost:6071", {cwd: "./noVNC/"});
 		}
 		if (!vncServers.virtual2.noVNC) {
-			vncServers.virtual2.noVNC = childProcess.exec("./noVNC/utils/launch.sh --listen 6082 --vnc localhost:6072");
+			vncServers.virtual2.noVNC = childProcess.exec("./utils/launch.sh --listen 6082 --vnc localhost:6072", {cwd: "./noVNC/"});
 		}
 		console.log("RUNNING python3 get_clips_locs.py");
 		const clips = JSON.parse(childProcess.execSync(`python3 get_clips_locs.py`, {encoding: "utf8"}));
