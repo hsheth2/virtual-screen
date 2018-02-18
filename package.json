@@ -1,0 +1,15 @@
+{
+  "name": "virtual-screen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:hsheth2/virtual-screen.git",
+  "author": "Andrew Sun <me@andrewsun.com>",
+  "license": "MIT",
+  "dependencies": {
+    "server": "^1.0.18"
+  },
+  "devDependencies": {
+    "ts-node": "^4.1.0",
+    "typescript": "^2.7.2"
+  }
+}

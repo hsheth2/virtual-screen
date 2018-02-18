@@ -1,0 +1,9 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="AutoBoxing" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoreAddedToCollection" value="false" />
+    </inspection_tool>
+    <inspection_tool class="AutoUnboxing" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  </profile>
+</component>
