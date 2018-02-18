@@ -62,6 +62,7 @@ server({port: 3000, security: {csrf: false}}, [
 		if (!vncServers.virtual2.noVNC) {
 			vncServers.virtual2.noVNC = childProcess.exec("./noVNC/utils/launch.sh --listen 6082 --vnc localhost:6072");
 		}
+		console.log("RUNNING python3 get_clips_locs.py");
 		const clips = JSON.parse(childProcess.execSync(`python3 get_clips_locs.py`, {encoding: "utf8"}));
 		if (clips.VIRTUAL1) {
 			vncServers.virtual1.vnc = childProcess.exec(`x11vnc -clip ${clips.VIRTUAL1} -rfbport 6071 -forever -cursorpos`);
@@ -78,3 +79,29 @@ server({port: 3000, security: {csrf: false}}, [
 		}
 	})
 ]);
+
+function clean() {
+	if (vncServers.virtual1.vnc) {
+		vncServers.virtual1.vnc.kill("SIGKILL");
+	}
+	if (vncServers.virtual2.vnc) {
+		vncServers.virtual2.vnc.kill("SIGKILL");
+	}
+
+	if (vncServers.virtual1.noVNC) {
+		vncServers.virtual1.noVNC.kill("SIGKILL");
+	}
+	if (vncServers.virtual2.noVNC) {
+		vncServers.virtual2.noVNC.kill("SIGKILL");
+	}
+
+}
+
+process.on("SIGINT", function () {
+	clean();
+	process.exit();
+});
+process.on("SIGTERM", function () {
+	clean();
+	process.exit();
+});
