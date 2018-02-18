@@ -38,11 +38,13 @@ server({port: 3000, security: {csrf: false}}, [
 		const x = +ctx.body.width;
 		const y = +ctx.body.height;
 
-		const stdout = childProcess.execFileSync("python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2" x, y, direction], {encoding: "utf8"});
+		console.log("RUNNING", "python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2", x, y, direction]);
+		const stdout = childProcess.execFileSync("python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2", x, y, direction], {encoding: "utf8"});
 		const lines = stdout.split("\n");
 		const last = lines[lines.length - 1];
 		console.log(last);
 
+		console.log("RUNNING", `xrandr --output eDP1 --mode 1920x1080 && xrandr ${prev} ${last}`);
 		childProcess.execSync(`xrandr --output eDP1 --mode 1920x1080 && xrandr ${prev} ${last}`);
 		prev = last;
 
