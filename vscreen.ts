@@ -60,7 +60,7 @@ server({port: 3000, security: {csrf: false}}, [
 		// if (vncServers.virtual2.vnc) {
 		// 	vncServers.virtual2.vnc.kill("SIGKILL");
 		// }
-		childProcess.execSync("killall x11vnc");
+		childProcess.execSync("killall -9 x11vnc");
 
 		if (!vncServers.virtual1.noVNC) {
 			vncServers.virtual1.noVNC = childProcess.exec("./utils/launch.sh --listen 6081 --vnc localhost:6071", {cwd: "./noVNC/"});
