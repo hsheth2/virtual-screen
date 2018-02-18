@@ -38,7 +38,7 @@ server({port: 3000, security: {csrf: false}}, [
 		const x = +ctx.body.width;
 		const y = +ctx.body.height;
 
-		const stdout = childProcess.execFileSync("python3", ["create_monitor.py", direction, x, y], {encoding: "utf8"});
+		const stdout = childProcess.execFileSync("python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2" x, y, direction], {encoding: "utf8"});
 		const lines = stdout.split("\n");
 		const last = lines[lines.length - 1];
 		console.log(last);
