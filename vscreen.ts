@@ -4,6 +4,9 @@ import * as childProcess from "child_process";
 import {SIGKILL} from "constants";
 
 childProcess.execSync("python3 clear_screens.py");
+childProcess.execSync("python3 clear_screens.py");
+childProcess.execSync("python3 clear_screens.py");
+childProcess.execSync("python3 clear_screens.py");
 
 const {get, post} = server.router;
 const {json} = server.reply;
@@ -97,6 +100,14 @@ function clean() {
 		vncServers.virtual2.noVNC.kill("SIGKILL");
 	}
 
+	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
+	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
 }
 
 process.on("SIGINT", function () {
