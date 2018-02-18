@@ -34,7 +34,7 @@ server({port: 3000, security: {csrf: false}}, [
 		return screens;
 	}),
 	post("/addScreen", async ctx => {
-		const direction = ctx.body.size;
+		const direction = ctx.body.side;
 		const x = +ctx.body.width;
 		const y = +ctx.body.height;
 
