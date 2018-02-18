@@ -1,15 +1,15 @@
 <template>
 	<div>
-		<div class="row">
-			<div class="col-xs-4 col-xs-offset-4">
-				<div v-if="layout.up.used" class="screen screen-used">
-					{{ layout.up.name }}
-				</div>
-				<div v-else class="screen screen-add" v-on:click="add('up')">
-					+
-				</div>
-			</div>
-		</div>
+		<!--<div class="row">-->
+		<!--<div class="col-xs-4 col-xs-offset-4">-->
+		<!--<div v-if="layout.up.used" class="screen screen-used">-->
+		<!--{{ layout.up.name }}-->
+		<!--</div>-->
+		<!--<div v-else class="screen screen-add" v-on:click="add('up')">-->
+		<!--+-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</div>-->
 		<div class="row">
 			<div class="col-xs-4">
 				<div v-if="layout.left.used" class="screen screen-used">
@@ -33,16 +33,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-4 col-xs-offset-4">
-				<div v-if="layout.down.used" class="screen screen-used">
-					{{ layout.down.name }}
-				</div>
-				<div v-else class="screen screen-add" v-on:click="add('down')">
-					+
-				</div>
-			</div>
-		</div>
+		<!--<div class="row">-->
+		<!--<div class="col-xs-4 col-xs-offset-4">-->
+		<!--<div v-if="layout.down.used" class="screen screen-used">-->
+		<!--{{ layout.down.name }}-->
+		<!--</div>-->
+		<!--<div v-else class="screen screen-add" v-on:click="add('down')">-->
+		<!--+-->
+		<!--</div>-->
+		<!--</div>-->
+		<!--</div>-->
 	</div>
 </template>
 
@@ -61,8 +61,16 @@
 		},
 		methods: {
 			add(side) {
-				fetch("/addScreen", {method: "post", body: side}).then(x => x.json()).then(res => {
-
+				fetch("/addScreen", {
+					method: "post", body: {
+						side,
+						width: screen.width,
+						height: screen.height
+					}, headers: {
+						"Content-Type": "application/json"
+					}
+				}).then(x => x.json()).then(res => {
+					location.assign(res.address);
 				})
 			}
 		},
