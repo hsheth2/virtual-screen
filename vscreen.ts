@@ -99,9 +99,11 @@ function clean() {
 
 process.on("SIGINT", function () {
 	clean();
+	console.log("sigint die");
 	process.exit();
 });
 process.on("SIGTERM", function () {
 	clean();
+	console.log("sigterm die");
 	process.exit();
 });
