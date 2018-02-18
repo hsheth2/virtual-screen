@@ -54,12 +54,13 @@ server({port: 3000, security: {csrf: false}}, [
 		childProcess.execSync(`xrandr --output eDP1 --mode 1920x1080 && xrandr ${prev} ${last}`);
 		prev = last;
 
-		if (vncServers.virtual1.vnc) {
-			vncServers.virtual1.vnc.kill("SIGKILL");
-		}
-		if (vncServers.virtual2.vnc) {
-			vncServers.virtual2.vnc.kill("SIGKILL");
-		}
+		// if (vncServers.virtual1.vnc) {
+		// 	vncServers.virtual1.vnc.kill("SIGKILL");
+		// }
+		// if (vncServers.virtual2.vnc) {
+		// 	vncServers.virtual2.vnc.kill("SIGKILL");
+		// }
+		childProcess.execSync("killall x11vnc");
 
 		if (!vncServers.virtual1.noVNC) {
 			vncServers.virtual1.noVNC = childProcess.exec("./utils/launch.sh --listen 6081 --vnc localhost:6071", {cwd: "./noVNC/"});
