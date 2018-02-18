@@ -6,6 +6,7 @@ import {SIGKILL} from "constants";
 childProcess.execSync("python3 clear_screens.py");
 
 const {get, post} = server.router;
+const {json} = server.reply;
 
 const screens = {
 	left: {
@@ -74,9 +75,9 @@ server({port: 3000, security: {csrf: false}}, [
 		screens[direction].used = true;
 		screens[direction].name = "Connected";
 
-		return {
+		return json({
 			address: `http://${ctx.headers.host}:${direction == "left" ? 6081 : 6082}/vnc_lite.html`
-		}
+		})
 	})
 ]);
 
