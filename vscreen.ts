@@ -12,13 +12,6 @@ const screens = {
 		used: false
 	},
 	right: {
-		used: true,
-		name: "VIRTUAL_0"
-	},
-	up: {
-		used: false
-	},
-	down: {
 		used: false
 	}
 };
@@ -73,6 +66,9 @@ server({port: 3000, security: {csrf: false}}, [
 		if (clips.VIRTUAL2) {
 			vncServers.virtual2.vnc = childProcess.exec(`x11vnc -clip ${clips.VIRTUAL2} -rfbport 6072 -forever -cursorpos`);
 		}
+
+		screens[direction].used = true;
+		screens[direction].name = "Connected";
 
 		return {
 			address: `http://${ctx.headers.host}:${direction == "left" ? 6081 : 6082}/vnc_lite.html`

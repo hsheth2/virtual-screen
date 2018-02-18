@@ -62,11 +62,11 @@
 		methods: {
 			add(side) {
 				fetch("/addScreen", {
-					method: "post", body: {
+					method: "post", body: JSON.stringify({
 						side,
 						width: screen.width,
 						height: screen.height
-					}, headers: {
+					}), headers: {
 						"Content-Type": "application/json"
 					}
 				}).then(x => x.json()).then(res => {
