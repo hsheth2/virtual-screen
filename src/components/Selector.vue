@@ -70,7 +70,9 @@
 						"Content-Type": "application/json"
 					}
 				}).then(x => x.json()).then(res => {
-					location.assign(res.address);
+					console.log(res);
+
+					location.assign(`http://${window.location.hostname}:${side === 'left' ? 6081 : 6082}/vnc_lite.html`);
 				})
 			}
 		},

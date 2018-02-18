@@ -48,6 +48,7 @@ server({port: 3000, security: {csrf: false}}, [
 
 		console.log("RUNNING", `xrandr --output eDP1 --mode 1920x1080 && xrandr ${prev} ${last}`);
 		childProcess.execSync(`xrandr --output eDP1 --mode 1920x1080 && xrandr ${prev} ${last}`);
+		childProcess.execSync(`xrandr --output eDP1 --mode 1920x1080 && xrandr ${prev} ${last}`);
 		prev = last;
 
 		if (vncServers.virtual1.vnc) {
@@ -76,7 +77,7 @@ server({port: 3000, security: {csrf: false}}, [
 		screens[direction].name = "Connected";
 
 		return json({
-			address: `http://${ctx.headers.host}:${direction == "left" ? 6081 : 6082}/vnc_lite.html`
+			status: "ok"
 		})
 	})
 ]);
