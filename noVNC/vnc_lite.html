@@ -55,11 +55,7 @@
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="app/styles/lite.css">
 
-	<style>
-		#noVNC_status_bar {
-			display: none;
-		}
-	</style>
+
 
 	<!--
    <script type='text/javascript'
@@ -165,6 +161,8 @@
 			} else {
 				status("Something went wrong, connection is closed", "error");
 			}
+
+			setTimeout(connectsfdsv, 4000);
 		}
 
 		function updatePowerButtons() {
@@ -212,7 +210,7 @@
 			WebUtil.createCookie('token', token, 1)
 		}
 
-		(function () {
+		(function connectsfdsv() {
 
 			status("Connecting", "normal");
 
@@ -272,5 +270,11 @@
       </span>
 	</div>
 </div>
+
+<style>
+	#noVNC_status_bar {
+		display: none !important;
+	}
+</style>
 </body>
 </html>

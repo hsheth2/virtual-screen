@@ -71,8 +71,9 @@
 					}
 				}).then(x => x.json()).then(res => {
 					console.log(res);
-
-					location.assign(`http://${window.location.hostname}:${side === 'left' ? 6081 : 6082}/vnc_lite.html`);
+					setTimeout(() => {
+						location.assign(`http://${window.location.hostname}:${side === 'left' ? 6081 : 6082}/vnc_lite.html`);
+					}, 5000);
 				})
 			}
 		},
