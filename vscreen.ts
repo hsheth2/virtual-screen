@@ -39,8 +39,9 @@ server({port: 3000, security: {csrf: false}}, [
 		const y = +ctx.body.height;
 
 		console.log("RUNNING", "python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2", x, y, direction]);
+		const stdout_bad = childProcess.execFileSync("python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2", x, y, direction], {encoding: "utf8"});
 		const stdout = childProcess.execFileSync("python3", ["create_monitor.py", direction == "left" ? "VIRTUAL1" : "VIRTUAL2", x, y, direction], {encoding: "utf8"});
-		const lines = stdout.split("\n");
+		const lines = stdout.trim().split("\n");
 		const last = lines[lines.length - 1];
 		console.log(last);
 
