@@ -7,6 +7,11 @@ childProcess.execSync("python3 clear_screens.py");
 childProcess.execSync("python3 clear_screens.py");
 childProcess.execSync("python3 clear_screens.py");
 childProcess.execSync("python3 clear_screens.py");
+try {
+	childProcess.execSync("killall -9 x11vnc");
+} catch (e) {
+
+}
 
 const {get, post} = server.router;
 const {json} = server.reply;
