@@ -35,7 +35,7 @@ let prev = "";
 
 server({port: 3000, security: {csrf: false}}, [
 	get("/layout", ctx => {
-		return json(screens);
+		return screens;
 	}),
 	post("/addScreen", async ctx => {
 		const direction = ctx.body.side;
@@ -61,7 +61,7 @@ server({port: 3000, security: {csrf: false}}, [
 		// 	vncServers.virtual2.vnc.kill("SIGKILL");
 		// }
 		try{
-			childProcess.execSync("killall x11vnc");
+			childProcess.execSync("killall -9 x11vnc");
 		} catch (e) {
 
 		}
