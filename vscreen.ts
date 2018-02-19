@@ -35,7 +35,7 @@ let prev = "";
 
 server({port: 3000, security: {csrf: false}}, [
 	get("/layout", ctx => {
-		return screens;
+		return json(screens);
 	}),
 	post("/addScreen", async ctx => {
 		const direction = ctx.body.side;
@@ -60,7 +60,11 @@ server({port: 3000, security: {csrf: false}}, [
 		// if (vncServers.virtual2.vnc) {
 		// 	vncServers.virtual2.vnc.kill("SIGKILL");
 		// }
-		childProcess.execSync("killall x11vnc");
+		try{
+			childProcess.execSync("killall x11vnc");
+		} catch (e) {
+
+		}
 
 		if (!vncServers.virtual1.noVNC) {
 			vncServers.virtual1.noVNC = childProcess.exec("./utils/launch.sh --listen 6081 --vnc localhost:6071", {cwd: "./noVNC/"});
@@ -101,14 +105,15 @@ function clean() {
 		vncServers.virtual2.noVNC.kill("SIGKILL");
 	}
 
-	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
-	childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");
+
+	try {childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'novnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");} catch(e){};
+	try {childProcess.execSync("kill $(ps aux | grep -i 'x11vnc' | awk '{print $2}')");} catch(e){};
 }
 
 process.on("SIGINT", function () {
